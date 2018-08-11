@@ -1,0 +1,56 @@
+<!doctype html>
+<head>
+    <style>
+        button:focus {
+            box-shadow: 0 0 3pt 2pt black;
+        }
+
+        .button {
+            border-radius: 15px;
+            width: 90%;
+            border-style: solid;
+        }
+
+        table {
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+    <table>
+        <tr>
+            <td>
+                <button id="clear-tags" class="button">Press Me</button>
+            </td>
+        </tr>
+    </table>
+    <script>
+        var button = document.getElementById('clear-tags');
+        button.addEventListener('click', function (e) {
+            var fadeIn_fadeOut = function () {
+                var count = 1;
+                var increase = true;
+                var iterate = 0;
+                var intID = setInterval(function () {
+                    document.getElementsByClassName('button')[0].style.opacity = 1 - (400 / 10000) * count;
+                    if (document.getElementsByClassName('button')[0].style.opacity < .1 || !increase) {
+                        count = count - 1;
+                        if (document.getElementsByClassName('button')[0].style.opacity > .99) {
+                            increase = true;
+                            if (iterate > 0) {
+                                clearInterval(intID);
+                            }
+                        } else {
+                            increase = false;
+                            iterate++;
+                        }
+                    } else if (increase) {
+                        count = count + 1.5;
+                    }
+                }, 50);
+            }
+            fadeIn_fadeOut();
+        });
+    </script>
+
+</body>
